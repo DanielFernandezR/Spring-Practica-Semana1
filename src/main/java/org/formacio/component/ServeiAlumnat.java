@@ -6,8 +6,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServeiAlumnat {
 
-	@Autowired
 	private RepositoriAlumnes alumnes;
+
+	@Autowired
+	public ServeiAlumnat(RepositoriAlumnes alumnes) {
+		this.alumnes = alumnes;
+		alumnes.altaAlumne(1, "Antonia");
+		alumnes.altaAlumne(2, "Joan");
+	}
 	
 	/**
 	 * ha de donar d'alta a la base de dades d'alumnes l'alumne indicat amb 
