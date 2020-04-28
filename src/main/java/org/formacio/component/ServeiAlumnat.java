@@ -1,19 +1,15 @@
 package org.formacio.component;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ServeiAlumnat {
 
-	private RepositoriAlumnes alumnes;
-
 	@Autowired
-	public ServeiAlumnat(RepositoriAlumnes alumnes) {
-		this.alumnes = alumnes;
-		alumnes.altaAlumne(1, "Antonia");
-		alumnes.altaAlumne(2, "Joan");
-	}
+	private RepositoriAlumnes alumnes;
 	
 	/**
 	 * ha de donar d'alta a la base de dades d'alumnes l'alumne indicat amb 
@@ -27,6 +23,23 @@ public class ServeiAlumnat {
 		}else {
 			alumnes.altaAlumne(id, alumne);
 			return true;
+		}
+	}
+	
+	@PostConstruct
+	public void init() {
+		this.crearAlumnosIniciales();
+	}
+	
+	private void crearAlumnosIniciales() {
+		
+		String[] alumnos = { "Antonia", "Joan" };
+		final byte posicionAlumnoInicial = 1;
+
+		short posicion = posicionAlumnoInicial;
+		for (String alumno : alumnos) {
+			alumnes.altaAlumne((int) posicion, alumno);
+			posicion += 1;
 		}
 	}
 	
