@@ -52,13 +52,24 @@ public class Setmana1Tests {
 	 * Implementau el metode ServeiAlumnat.matricula(id, nom), tal com trobareu alla especificat
 	 */
 	@Test
-	public void test_matricula() {
+	public void test_matricula_alumne_null() {
 		
 	    boolean insertaNull = servei.matricula(4, null);
 	    assertFalse("Inserir null ha de retornar false", insertaNull);
 	    
 	    assertFalse("null no s'ha inserit",repositori.llistaAlumnes().contains(null));
-	    
+
+	}
+	
+	/**
+	 * He dividit el cas test_matricula_alumne en dos cassos per
+	 * tenir mes control sobre el codi.
+	 * A mes, considero que son dos cassos diferents.
+	 */
+	
+	@Test
+	public void test_matricula_alumne_not_null() {
+			    
 	    boolean insertaNoNull = servei.matricula(4, "Laura");
 	    assertTrue("Na Laura se pot matricular",insertaNoNull);
 	    assertEquals("Laura", repositori.obteAlumne(4));
