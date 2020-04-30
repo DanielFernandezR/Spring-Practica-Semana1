@@ -4,8 +4,9 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class ServeiAlumnat {
 
 	@Autowired
@@ -18,11 +19,11 @@ public class ServeiAlumnat {
 	 * Retorna true si l'alumne s'ha inserit, false si no.
 	 */
 	public boolean matricula (int id, String alumne) {
-		if (alumne == null) {
-			return false;
-		}else {
+		if (alumne != null) {
 			alumnes.altaAlumne(id, alumne);
 			return true;
+		}else {
+			return false;
 		}
 	}
 	
